@@ -1,0 +1,13 @@
+html { height: 100%; }
+
+body {
+  min-height: 100%;
+
+  background: linear-gradient(200deg, rgba(230, 230, 230, 1), rgba(203, 203, 203,1 ));
+}
+
+*:focus { outline: 0; }
+
+[hidden][aria-hidden="false"]:focus {
+    clip: rect(0 0 0 0);
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "settings": {
+    "import/ignore": ["node_modules"],
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      },
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "app/scripts",
+          "app/styles",
+          "app/fonts",
+          "app/images"
+        ]
+      }
+    }
+  }
+}
