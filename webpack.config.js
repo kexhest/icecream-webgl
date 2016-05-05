@@ -14,15 +14,14 @@ const dev = !(production || test);
 
 const config = {
   resolve: {
-    modules: [
+    root: [
       path.resolve(__dirname, 'app', 'scripts'),
       path.resolve(__dirname, 'app', 'videos'),
       path.resolve(__dirname, 'app', 'images'),
       path.resolve(__dirname, 'app', 'fonts'),
       path.resolve(__dirname, 'app', 'styles'),
-      'node_modules',
     ],
-    descriptionFiles: ['package.json'],
+    modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx', '.json', 'scss'],
     alias: {},
   },
@@ -96,18 +95,27 @@ if (!test) {
   objectAssign(config, {
     devtool: dev ? 'cheap-module-eval-source-map' : undefined,
 
-    entry: [].concat(dev
-      ? [
-        'eventsource-polyfill', // necessary for hot reloading with IE
-        'webpack-hot-middleware/client',
-      ]
-      : []
-    ).concat([path.resolve(__dirname, 'app', 'entry.js')]),
+    entry: {
+      vendor: [
+        'three',
+        'cannon',
+      ],
+      app: [
+        path.resolve(__dirname, 'app', 'entry.js')
+      ].concat(dev
+        ? [
+          'eventsource-polyfill', // necessary for hot reloading with IE
+          'webpack-hot-middleware/client',
+        ]
+        : []
+      ),
+    },
 
     output: {
       path: path.resolve(__dirname, 'public'),
       publicPath: '/',
-      filename: '[hash].js',
+      filename: `${production ? '[chunkhash]' : '[name]'}.js`,
+      chunkFilename: `${production ? '[chunkhash]' : '[name]'}.js`,
     },
 
     postcss: [
@@ -119,6 +127,7 @@ if (!test) {
   });
 
   config.plugins.push(...[
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
     new HtmlWebpackPlugin({
       inject: true,
       filename: 'index.html',
@@ -130,10 +139,6 @@ if (!test) {
         minifyCSS: true,
       },
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: dev,
-    }),
   ]);
 
   config.plugins.push(...(production ? [
@@ -143,8 +148,18 @@ if (!test) {
       },
     }),
     new webpack.optimize.DedupePlugin(),
-    new ExtractTextPlugin('[contenthash].css'),
+    new webpack.optimize.UglifyJsPlugin({
+      output: { comments: false },
+      mangle: true,
+      compress: {
+        drop_console: true,
+        dead_code: true,
+        warnings: false,
+      },
+    }),
+    new ExtractTextPlugin(`${production ? '[contenthash]' : '[name]'}.css`),
   ] : [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ]));
