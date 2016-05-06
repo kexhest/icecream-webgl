@@ -9,6 +9,8 @@
 
 import THREE from 'three';
 
+import isMobile from 'ismobilejs';
+
 import Sprinkle from './Sprinkle';
 
 const {
@@ -17,7 +19,7 @@ const {
 
 const rand = (low, high) => ~~(random() * (high - low) + low);
 
-const sprinkleCount = 128;
+const sprinkleCount = isMobile.any ? 32 : 64;
 
 export default class Sprinkles extends THREE.Object3D {
 
@@ -64,7 +66,7 @@ export default class Sprinkles extends THREE.Object3D {
 
     setTimeout(() => {
       this.generateSprinkles(world);
-    }, 100);
+    }, isMobile.any ? 200 : 100);
   }
 
   update() {

@@ -49,8 +49,8 @@ export default class World extends THREE.Object3D {
     this.physics.gravity.set(0, -24, 0);
     this.physics.broadphase = new CANNON.NaiveBroadphase();
 
-    this.physics.defaultContactMaterial.contactEquationStiffness = 1e9;
-    this.physics.defaultContactMaterial.contactEquationRelaxation = 4;
+    this.physics.defaultContactMaterial.contactEquationStiffness = 4e9;
+    this.physics.defaultContactMaterial.contactEquationRelaxation = 1;
 
     const physicsMaterial = new CANNON.Material('slipperyMaterial');
     const physicsContactMaterial = new CANNON.ContactMaterial(

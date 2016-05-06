@@ -9,6 +9,14 @@
 
 import THREE from 'three';
 
+const {
+  PI,
+  sin,
+  cos,
+  min,
+  max,
+} = Math;
+
 export default class Camera extends THREE.PerspectiveCamera {
 
   /**
@@ -72,8 +80,16 @@ export default class Camera extends THREE.PerspectiveCamera {
    * @return {void}
    */
   update(mouse, target) {
-    this.position.x += ((mouse.x - this.halfWidth) - this.position.x) * 0.01;
+    this.position.x = 144 * sin(((mouse.x - this.halfWidth) / this.halfWidth) * PI);
+    // this.position.x += ((mouse.x - this.halfWidth) - this.position.x) * 0.01;
+    // this.position.x = min(this.position.y, 256);
+
+    this.position.z = 144 * cos(((mouse.x - this.halfWidth) / this.halfWidth) * PI);
+    // this.position.z += ((mouse.x - this.halfWidth) - this.position.x) * 0.01;
+    // this.position.z = min(this.position.z, 256);
+
     this.position.y += (-(mouse.y - this.halfHeight - 64) - this.position.y) * 0.005;
+    this.position.y = max(this.position.y, 16);
     this.lookAt(target);
   }
 

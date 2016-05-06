@@ -12,6 +12,8 @@ import THREE from 'three';
 import Cone from './Cone';
 import Scoops from './Scoops';
 
+// const { sin } = Math;
+
 export default class IceCream extends THREE.Object3D {
 
   constructor(scene, world, options) {
@@ -45,12 +47,14 @@ export default class IceCream extends THREE.Object3D {
     if (scene) scene.add(this);
   }
 
-  update() {
+  update(elapsed) {
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].update();
     }
 
     // this.rotation.y += 0.005;
+    // this.rotation.y = sin(elapsed);
+    // this.position.y += sin(elapsed) * 0.1;
   }
 
 }

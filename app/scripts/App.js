@@ -158,7 +158,7 @@ export default class App {
    */
   update() {
     const delta = this.clock.getDelta();
-    // const elapsed = this.clock.getElapsedTime();
+    const elapsed = this.clock.getElapsedTime();
 
     stats.begin();
 
@@ -167,8 +167,8 @@ export default class App {
 
     this.world.physics.step(delta);
 
-    this.iceCream.update();
-    this.sprinkles.update();
+    this.iceCream.update(elapsed);
+    this.sprinkles.update(elapsed);
 
     // this.cannonDebugRenderer.update();
 
