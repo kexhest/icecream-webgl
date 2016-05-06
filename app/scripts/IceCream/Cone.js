@@ -59,7 +59,7 @@ export default class Cone extends THREE.Mesh {
 
     // const facets = [];
 
-    for (let i = 96; i < geometry.vertices.length; i++) {
+    for (let i = 0; i < geometry.vertices.length; i++) {
       const v = geometry.vertices[i];
 
       // facets.push({
@@ -72,7 +72,7 @@ export default class Cone extends THREE.Mesh {
       // });
 
       const angle = random() * TWO_PI;
-      const amp = random() * (v.x * v.y) * 0.01;
+      const amp = i < 96 ? random() * (v.x * v.y) * 0.0025 : random() * (v.x * v.y) * 0.01;
 
       v.x += cos(angle) * amp;
       v.y += sin(angle) * amp;

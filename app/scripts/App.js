@@ -25,13 +25,15 @@ import World from './World/World';
 import IceCream from './IceCream/IceCream';
 import Sprinkles from './Sprinkles/Sprinkles';
 
-const stats = new Stats();
-stats.setMode(0);
-stats.domElement.style.position = 'absolute';
-stats.domElement.style.left = '0px';
-stats.domElement.style.top = '0px';
-stats.domElement.style.zIndex = '1';
-document.body.appendChild(stats.domElement);
+if (process.env.NODE_ENV.dev) {
+  const stats = new Stats();
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  stats.domElement.style.zIndex = '1';
+  document.body.appendChild(stats.domElement);
+}
 
 /**
  * This is the App class.
@@ -160,7 +162,7 @@ export default class App {
     const delta = this.clock.getDelta();
     const elapsed = this.clock.getElapsedTime();
 
-    stats.begin();
+    if (process.env.NODE_ENV.dev) stats.begin();
 
     this.camera.update(this.mouse, this.iceCream.position);
     // this.controls.update(delta);
@@ -174,7 +176,7 @@ export default class App {
 
     this.render();
 
-    stats.end();
+    if (process.env.NODE_ENV.dev) stats.end();
 
     raf(this.update);
   }
