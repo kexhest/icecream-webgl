@@ -1,7 +1,7 @@
-APT ASSIGNMENT
+Ice cream webgl
 ===============
 
-Just an example of how the apt assignment could be solved.
+Just an ice cream and some sprinkles in webgl.
 
 ## Installation
 If you've never used Node or npm before, you'll need to install Node.

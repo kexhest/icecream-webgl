@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -30,8 +30,19 @@ const colors = [
 
 const rand = (low, high) => random() * (high - low) + low;
 
+/**
+ * This is the Sprinkle class.
+ */
 export default class Sprinkle extends THREE.Mesh {
 
+  /**
+   * Create Sprinkle.
+   *
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(world, options) {
     const opts = {
       color: sample(colors),
@@ -91,13 +102,13 @@ export default class Sprinkle extends THREE.Mesh {
     this.position.z = opts.position.z;
 
     this.shape = new CANNON.Cylinder(opts.radiusTop, opts.radiusBottom, opts.height, 4);
-    this.body = new CANNON.Body({ mass: 0.01 });
+    this.body = new CANNON.Body({ mass: 0.1 });
     this.body.addShape(this.shape);
 
     this.body.position.copy(this.position);
     this.body.quaternion.copy(this.quaternion);
 
-    // this.body.linearDamping = 0.1;
+    // this.body.linearDamping = 0.01;
 
     world.physics.addBody(this.body);
 
@@ -107,6 +118,11 @@ export default class Sprinkle extends THREE.Mesh {
     // this.update = this.update.bind(this);
   }
 
+  /**
+   * Update mesh position and rotation based on physics calculations from cannon.
+   *
+   * @return {void}
+   */
   update() {
     this.position.copy(this.body.position);
     this.quaternion.copy(this.body.quaternion);

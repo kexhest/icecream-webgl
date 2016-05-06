@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -21,8 +21,20 @@ const rand = (low, high) => ~~(random() * (high - low) + low);
 
 const sprinkleCount = isMobile.any ? 32 : 64;
 
+/**
+ * This is the Sprinkles class.
+ */
 export default class Sprinkles extends THREE.Object3D {
 
+  /**
+   * Create Sprinkles.
+   *
+   * @param {object} scene
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(scene, world, options) {
     const opts = {
       name: 'sprinkles',
@@ -47,6 +59,13 @@ export default class Sprinkles extends THREE.Object3D {
     if (scene) scene.add(this);
   }
 
+  /**
+   * Create and add new sprinkles on interval. Remove oldest when limit is reached.
+   *
+   * @param {object} world
+   *
+   * @return {void}
+   */
   generateSprinkles(world) {
     if (this.children.length >= sprinkleCount) {
       const item = this.children[0];
@@ -69,6 +88,11 @@ export default class Sprinkles extends THREE.Object3D {
     }, isMobile.any ? 200 : 100);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].update();

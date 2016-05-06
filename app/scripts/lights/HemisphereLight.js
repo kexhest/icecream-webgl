@@ -1,7 +1,5 @@
-/* global dat */
-
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -11,18 +9,6 @@
 
 import THREE from 'three';
 
-// const params = {
-//   H: 0.62,
-//   S: 1,
-//   L: 0.55,
-// };
-
-// const gui = new dat.GUI();
-// gui.add(params, 'H', 0, 1);
-// gui.add(params, 'S', 0, 1);
-// gui.add(params, 'L', 0, 1);
-// gui.open();
-
 /**
  * This is the HemisphereLight class.
  */
@@ -30,6 +16,9 @@ export default class HemisphereLight extends THREE.HemisphereLight {
 
   /**
    * Create HemisphereLight.
+   *
+   * @param {object} scene
+   * @param {object} options
    *
    * @return {void}
    */
@@ -45,6 +34,11 @@ export default class HemisphereLight extends THREE.HemisphereLight {
     if (scene) scene.add(this);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 

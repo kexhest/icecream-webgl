@@ -1,6 +1,15 @@
 {
   "extends": "airbnb",
   "parser": "babel-eslint",
+  "globals": {
+    "dat": true,
+    "Stats": true,
+    "OrbitControls": true,
+    "StereoEffect": true,
+    "CardboardEffect": true,
+    "DeviceOrientationControls": true,
+    "CannonDebugRenderer": true
+  },
   "settings": {
     "import/ignore": ["node_modules"],
     "import/resolver": {

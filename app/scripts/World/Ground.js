@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -16,11 +16,21 @@ const {
 
 const HALF_PI = PI * 0.5;
 
+/**
+ * This is the Ground class.
+ */
 export default class Ground extends THREE.Mesh {
 
+  /**
+   * Create Ground.
+   *
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(options) {
     const opts = {
-      color: 0xcccccc,
+      color: 0xdddddd,
       specular: 0x000000,
       distance: 10000,
       position: {
@@ -57,6 +67,11 @@ export default class Ground extends THREE.Mesh {
     this.receiveShadow = true;
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 

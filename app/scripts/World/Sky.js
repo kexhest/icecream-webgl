@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -18,8 +18,18 @@ const {
 
 const TWO_PI = PI * 2;
 
-export default class Ground extends THREE.Mesh {
+/**
+ * This is the Sky class.
+ */
+export default class Sky extends THREE.Mesh {
 
+  /**
+   * Create Sky.
+   *
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(options) {
     const opts = {
       radius: 1000,
@@ -29,8 +39,8 @@ export default class Ground extends THREE.Mesh {
       phiLength: TWO_PI,
       thetaStart: 0,
       thetaLength: PI,
-      topColor: 0xcccccc,
-      bottomColor: 0xeeeeee,
+      topColor: 0xdddddd,
+      bottomColor: 0xffffff,
       position: {
         x: 0,
         y: 0,
@@ -80,6 +90,11 @@ export default class Ground extends THREE.Mesh {
     this.position.z = opts.position.z;
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 

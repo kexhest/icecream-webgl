@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -14,8 +14,20 @@ import Scoops from './Scoops';
 
 // const { sin } = Math;
 
+/**
+ * This is the IceCream class.
+ */
 export default class IceCream extends THREE.Object3D {
 
+  /**
+   * Create IceCream.
+   *
+   * @param {object} scene
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(scene, world, options) {
     const opts = {
       name: 'icecream',
@@ -47,6 +59,13 @@ export default class IceCream extends THREE.Object3D {
     if (scene) scene.add(this);
   }
 
+  /**
+   * Update.
+   *
+   * @param {number} elapsed
+   *
+   * @return {void}
+   */
   update(elapsed) {
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].update();

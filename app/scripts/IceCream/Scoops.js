@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -17,10 +17,21 @@ const {
 
 const rand = (low, high) => ~~(random() * (high - low) + low);
 
-const scoopCount = rand(1, 4);
+const scoopCount = rand(2, 4);
 
+/**
+ * This is the Scoops class.
+ */
 export default class Scoops extends THREE.Object3D {
 
+  /**
+   * Create Scoops.
+   *
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(world, options) {
     const opts = {
       name: 'scoops',
@@ -59,6 +70,11 @@ export default class Scoops extends THREE.Object3D {
     this.position.z = opts.position.z;
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].update();

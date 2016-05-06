@@ -1,15 +1,15 @@
 {
-  "name": "apt-assignment",
-  "version": "1.0.0",
-  "description": "Assignment for new apt prospects.",
-  "author": "Magnus Bergman <magnus@apt.no>",
+  "name": "icecream-webgl",
+  "version": "0.0.1",
+  "description": "Just an ice cream and some sprinkles in webgl.",
+  "author": "Magnus Bergman <hello@magnus.sexy>",
   "engines": {
     "node": "5.11.0",
     "npm": "3.8.8"
   },
   "repository": {
     "type": "git",
-    "url": "git@git1.apt.no:apt/apt-assignment.git"
+    "url": "git@github.com:magnus-bergman/icecream-webgl.git"
   },
   "license": "MIT",
   "scripts": {

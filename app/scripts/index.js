@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -11,6 +11,11 @@ import App from './App';
 
 let LOADED = false;
 
+/**
+ * Check for webgl support and bootstrap application.
+ *
+ * @return {void}
+ */
 function bootstrap() {
   if (LOADED) return;
 

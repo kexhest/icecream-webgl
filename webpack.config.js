@@ -159,6 +159,11 @@ if (!test) {
     }),
     new ExtractTextPlugin(`${production ? '[contenthash]' : '[name]'}.css`),
   ] : [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('dev'),
+      },
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

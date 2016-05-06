@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -31,8 +31,19 @@ const colors = [
 
 // const rand = (low, high) => ~~(random() * (high - low) + low);
 
+/**
+ * This is the Scoop class.
+ */
 export default class Scoop extends THREE.Mesh {
 
+  /**
+   * Create Scoop.
+   *
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(world, options) {
     const opts = {
       radius: 24,
@@ -66,22 +77,11 @@ export default class Scoop extends THREE.Mesh {
 
     const modifier = opts.rim ? 448 : 0;
 
-    // const facets = [];
-
     for (let i = 0; i < geometry.vertices.length - modifier; i++) {
       const v = geometry.vertices[i];
 
-      // facets.push({
-      //   y: v.y,
-      //   x: v.x,
-      //   z: v.z,
-      //   ang: random() * TWO_PI,
-      //   amp: 0.25 + random() * (v.x * v.y) * 0.01, // random() * 0.5,
-      //   speed: 0.016 + random() * 0.032,
-      // });
-
       const angle = random() * TWO_PI;
-      const amp = random() * 2; // 0.25 + random() * (v.x * v.y) * 0.01;
+      const amp = random() * 2;
 
       v.x += cos(angle) * amp;
       v.y += sin(angle) * amp;
@@ -89,14 +89,9 @@ export default class Scoop extends THREE.Mesh {
 
     const material = new THREE.MeshPhongMaterial({
       color: opts.color,
-      // transparent: true,
-      // opacity: 0.8,
-      // shading: THREE.FlatShading,
     });
 
     super(geometry, material);
-
-    // this.facets = facets
 
     this.position.x = opts.position.x;
     this.position.y = opts.position.y;
@@ -117,6 +112,14 @@ export default class Scoop extends THREE.Mesh {
     if (opts.rim) this.createRim(material, opts.position);
   }
 
+  /**
+   * Create a torus around the scoop for a nice effect.
+   *
+   * @param {object} material
+   * @param {object} position
+   *
+   * @return {void}
+   */
   createRim(material, position) {
     const geometry = new THREE.TorusGeometry(24, 2, 16, 64);
 
@@ -143,20 +146,14 @@ export default class Scoop extends THREE.Mesh {
     this.add(rim);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
     // this.position.copy(this.body.position);
     // this.quaternion.copy(this.body.quaternion);
-
-    // for (let i = 0; i < this.geometry.vertices.length; i++) {
-    //   const v = this.geometry.vertices[i];
-    //   const f = this.facets[i];
-
-    //   v.x = f.x + cos(f.ang) * f.amp;
-    //   v.y = f.y + sin(f.ang) * f.amp;
-    //   f.ang += f.speed;
-    // }
-
-    // this.geometry.verticesNeedUpdate = true;
   }
 
 }

@@ -1,7 +1,5 @@
-/* global dat, Stats, OrbitControls, StereoEffect, CardboardEffect, DeviceOrientationControls, CannonDebugRenderer */
-
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -25,8 +23,13 @@ import World from './World/World';
 import IceCream from './IceCream/IceCream';
 import Sprinkles from './Sprinkles/Sprinkles';
 
+let stats = {
+  begin: () => {},
+  end: () => {},
+};
+
 if (process.env.NODE_ENV.dev) {
-  const stats = new Stats();
+  stats = new Stats();
   stats.setMode(0);
   stats.domElement.style.position = 'absolute';
   stats.domElement.style.left = '0px';
@@ -43,8 +46,7 @@ export default class App {
   /**
    * Create App
    *
-   * @param {object|string} video (src path or video element)
-   * @param {bool} iOS
+   * @param {object} options
    *
    * @return {void}
    */
@@ -59,7 +61,6 @@ export default class App {
     this.fit = this.fit.bind(this);
     this.track = this.track.bind(this);
     this.update = this.update.bind(this);
-    this.setOrientationControls = this.setOrientationControls.bind(this);
 
     this.clock = new THREE.Clock();
     this.renderer = new WebGLRenderer({ container: this.opts.container });
@@ -78,22 +79,6 @@ export default class App {
 
     this.sprinkles = new Sprinkles(this.scene, this.world);
 
-    // this.cannonDebugRenderer = new CannonDebugRenderer(this.scene, this.world.physics);
-
-    // this.effect = new StereoEffect(this.renderer);
-    // this.effect.setSize(width, height);
-
-    // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-
-    // this.controls.target.set(
-    //   this.camera.position.x,
-    //   this.camera.position.y,
-    //   this.camera.position.z
-    // );
-
-    // this.controls.enableZoom = false;
-    // this.controls.enablePan = false;
-
     this.bindEvents();
     this.update();
   }
@@ -107,7 +92,6 @@ export default class App {
     window.addEventListener('resize', this.fit, false);
     this.opts.container.addEventListener('mousemove', this.track, false);
     this.opts.container.addEventListener('touchmove', this.track, false);
-    // window.addEventListener('deviceorientation', this.setOrientationControls, true);
   }
 
   /**
@@ -124,23 +108,6 @@ export default class App {
   }
 
   /**
-   * Update controls to be deviceorientation based if deviceorientation is triggered.
-   *
-   * @param {object} e
-   *
-   * @return {void}
-   */
-  setOrientationControls(e) {
-    if (!e.alpha) return;
-
-    this.controls = new DeviceOrientationControls(this.camera, true);
-    this.controls.connect();
-    this.controls.update();
-
-    window.removeEventListener('deviceorientation', this.setOrientationControls, true);
-  }
-
-  /**
    * Resize canvas and everything within according to new window size.
    *
    * @return {void}
@@ -150,7 +117,6 @@ export default class App {
 
     this.camera.setSize(width, height);
     this.renderer.setSize(width, height);
-    // this.effect.setSize(width, height);
   }
 
   /**
@@ -165,14 +131,11 @@ export default class App {
     if (process.env.NODE_ENV.dev) stats.begin();
 
     this.camera.update(this.mouse, this.iceCream.position);
-    // this.controls.update(delta);
 
     this.world.physics.step(delta);
 
     this.iceCream.update(elapsed);
     this.sprinkles.update(elapsed);
-
-    // this.cannonDebugRenderer.update();
 
     this.render();
 
@@ -187,7 +150,6 @@ export default class App {
    * @return {void}
    */
   render() {
-    // this.effect.render(this.scene, this.camera);
     this.renderer.render(this.scene, this.camera);
   }
 }

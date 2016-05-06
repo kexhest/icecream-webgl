@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -23,8 +23,19 @@ const {
 const TWO_PI = PI * 2;
 const HALF_PI = PI * 0.5;
 
+/**
+ * This is the Cone class.
+ */
 export default class Cone extends THREE.Mesh {
 
+  /**
+   * Create Cone.
+   *
+   * @param {object} world
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(world, options) {
     const opts = {
       radiusTop: 24,
@@ -62,20 +73,20 @@ export default class Cone extends THREE.Mesh {
     for (let i = 0; i < geometry.vertices.length; i++) {
       const v = geometry.vertices[i];
 
-      // facets.push({
-      //   y: v.y,
-      //   x: v.x,
-      //   z: v.z,
-      //   ang: random() * TWO_PI,
-      //   amp: random() * (v.x * v.y) * 0.01, // random() * 0.5,
-      //   speed: 0.016 + random() * 0.032,
-      // });
-
       const angle = random() * TWO_PI;
       const amp = i < 96 ? random() * (v.x * v.y) * 0.0025 : random() * (v.x * v.y) * 0.01;
 
       v.x += cos(angle) * amp;
       v.y += sin(angle) * amp;
+
+      // facets.push({
+      //   y: v.y,
+      //   x: v.x,
+      //   z: v.z,
+      //   angle,
+      //   amp,
+      //   speed: 0.016 + random() * 0.032,
+      // });
     }
 
     const material = new THREE.MeshPhongMaterial({
@@ -108,19 +119,24 @@ export default class Cone extends THREE.Mesh {
     this.castShadow = true;
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
     // this.position.copy(this.body.position);
     // this.quaternion.copy(this.body.quaternion);
 
-    // skip 128 first, since they make up the upper edge
+    // skip 64 first, since they make up the upper edge
     // and we want it to be fixed.
-    // for (let i = 128; i < this.geometry.vertices.length; i++) {
+    // for (let i = 64; i < this.geometry.vertices.length; i++) {
     //   const v = this.geometry.vertices[i];
     //   const f = this.facets[i];
 
-    //   v.x = f.x + cos(f.ang) * f.amp;
-    //   v.y = f.y + sin(f.ang) * f.amp;
-    //   f.ang += f.speed;
+    //   v.x = f.x + cos(f.angle) * f.amp;
+    //   v.y = f.y + sin(f.angle) * f.amp;
+    //   f.angle += f.speed;
     // }
 
     // this.geometry.verticesNeedUpdate = true;

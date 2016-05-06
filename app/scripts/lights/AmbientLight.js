@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -17,12 +17,15 @@ export default class AmbientLight extends THREE.AmbientLight {
   /**
    * Create AmbientLight.
    *
+   * @param {object} scene
+   * @param {object} options
+   *
    * @return {void}
    */
   constructor(scene, options) {
     const opts = {
       color: 0xffffff,
-      intensity: 0.5,
+      intensity: 0.6,
       ...options,
     };
 
@@ -31,6 +34,11 @@ export default class AmbientLight extends THREE.AmbientLight {
     if (scene) scene.add(this);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 

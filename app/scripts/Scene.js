@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -19,9 +19,14 @@ export default class Scene extends THREE.Scene {
   constructor() {
     super();
 
-    this.fog = new THREE.Fog(0xeeeeee, 100, 950);
+    this.fog = new THREE.Fog(0xffffff, 100, 950);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 

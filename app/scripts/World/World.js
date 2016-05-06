@@ -1,5 +1,5 @@
 /*
- * This file is part of the three playground.
+ * This file is part of the ice cream example.
  *
  * (c) Magnus Bergman <hello@magnus.sexy>
  *
@@ -17,8 +17,19 @@ import Sky from './Sky';
 
 // const HALF_PI = PI * 0.5;
 
+/**
+ * This is the World class.
+ */
 export default class World extends THREE.Object3D {
 
+  /**
+   * Create World.
+   *
+   * @param {object} scene
+   * @param {object} options
+   *
+   * @return {void}
+   */
   constructor(scene, options) {
     const opts = {
       name: 'world',
@@ -77,6 +88,11 @@ export default class World extends THREE.Object3D {
     if (scene) scene.add(this);
   }
 
+  /**
+   * Update.
+   *
+   * @return {void}
+   */
   update() {
   }
 
