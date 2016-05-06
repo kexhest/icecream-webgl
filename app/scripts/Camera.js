@@ -88,7 +88,7 @@ export default class Camera extends THREE.PerspectiveCamera {
     // this.position.z += ((mouse.x - this.halfWidth) - this.position.x) * 0.01;
     // this.position.z = min(this.position.z, 256);
 
-    this.position.y += (-(mouse.y - this.halfHeight - 64) - this.position.y) * 0.005;
+    this.position.y += (-(mouse.y - this.halfHeight - 64) - this.position.y) * 0.01;
     this.position.y = max(this.position.y, 16);
     this.lookAt(target);
   }

@@ -64,7 +64,7 @@ export default class Scoop extends THREE.Mesh {
 
     geometry.mergeVertices();
 
-    const modifier = opts.rim ? 384 : 0;
+    const modifier = opts.rim ? 448 : 0;
 
     // const facets = [];
 
@@ -81,7 +81,7 @@ export default class Scoop extends THREE.Mesh {
       // });
 
       const angle = random() * TWO_PI;
-      const amp = 0.25 + random() * (v.x * v.y) * 0.01;
+      const amp = random() * 2; // 0.25 + random() * (v.x * v.y) * 0.01;
 
       v.x += cos(angle) * amp;
       v.y += sin(angle) * amp;
@@ -91,7 +91,7 @@ export default class Scoop extends THREE.Mesh {
       color: opts.color,
       // transparent: true,
       // opacity: 0.8,
-      shading: THREE.FlatShading,
+      // shading: THREE.FlatShading,
     });
 
     super(geometry, material);
