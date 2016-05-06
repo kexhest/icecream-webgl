@@ -34,6 +34,10 @@ export default class WebGLRenderer extends THREE.WebGLRenderer {
     this.shadowMap.enabled = true;
     this.shadowMapSoft = true;
 
+    this.domElement.style.position = 'fixed';
+    this.domElement.style.top = 0;
+    this.domElement.style.left = 0;
+
     opts.container.appendChild(this.domElement);
   }
 
