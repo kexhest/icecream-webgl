@@ -28,7 +28,7 @@ let stats = {
   end: () => {},
 };
 
-if (process.env.NODE_ENV.dev) {
+if (process.env.NODE_ENV === 'dev') {
   stats = new Stats();
   stats.setMode(0);
   stats.domElement.style.position = 'absolute';
@@ -79,6 +79,7 @@ export default class App {
 
     this.sprinkles = new Sprinkles(this.scene, this.world);
 
+
     this.bindEvents();
     this.update();
   }
@@ -128,7 +129,7 @@ export default class App {
     const delta = this.clock.getDelta();
     const elapsed = this.clock.getElapsedTime();
 
-    if (process.env.NODE_ENV.dev) stats.begin();
+    if (process.env.NODE_ENV === 'dev') stats.begin();
 
     this.camera.update(this.mouse, this.iceCream.position);
 
@@ -139,7 +140,7 @@ export default class App {
 
     this.render();
 
-    if (process.env.NODE_ENV.dev) stats.end();
+    if (process.env.NODE_ENV === 'dev') stats.end();
 
     raf(this.update);
   }

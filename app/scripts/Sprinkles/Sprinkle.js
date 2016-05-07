@@ -20,7 +20,7 @@ const {
 } = Math;
 
 const TWO_PI = PI * 2;
-// const HALF_PI = PI * 0.5;
+const HALF_PI = PI * 0.5;
 
 const colors = [
   0xfff373,
@@ -46,10 +46,10 @@ export default class Sprinkle extends THREE.Mesh {
   constructor(world, options) {
     const opts = {
       color: sample(colors),
-      radiusTop: 1,
-      radiusBottom: 1,
-      height: 4,
-      radiusSegments: 8,
+      radiusTop: 0.5,
+      radiusBottom: 0.5,
+      height: 3,
+      radiusSegments: 16,
       heightSegments: 1,
       openEnded: false,
       thetaStart: 0,
@@ -73,7 +73,7 @@ export default class Sprinkle extends THREE.Mesh {
       opts.thetaLength
     );
 
-    // geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-HALF_PI));
+    geometry.applyMatrix(new THREE.Matrix4().makeRotationX(-HALF_PI));
     geometry.mergeVertices();
 
     for (let i = 0; i < geometry.vertices.length; i++) {
@@ -101,7 +101,7 @@ export default class Sprinkle extends THREE.Mesh {
     this.position.y = opts.position.y;
     this.position.z = opts.position.z;
 
-    this.shape = new CANNON.Cylinder(opts.radiusTop, opts.radiusBottom, opts.height, 4);
+    this.shape = new CANNON.Cylinder(opts.radiusTop, opts.radiusBottom, opts.height, 16);
     this.body = new CANNON.Body({ mass: 0.1 });
     this.body.addShape(this.shape);
 
