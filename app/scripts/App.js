@@ -79,7 +79,6 @@ export default class App {
 
     this.sprinkles = new Sprinkles(this.scene, this.world);
 
-
     this.bindEvents();
     this.update();
   }

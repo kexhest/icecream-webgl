@@ -101,7 +101,7 @@ if (!test) {
         'cannon',
       ],
       app: [
-        path.resolve(__dirname, 'app', 'entry.js')
+        path.resolve(__dirname, 'app', 'entry.js'),
       ].concat(dev
         ? [
           'eventsource-polyfill', // necessary for hot reloading with IE
